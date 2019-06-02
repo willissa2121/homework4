@@ -140,19 +140,30 @@ $("#button").click(function () {
   $("#jedi-damage").text(`Your Hero took ${randoJedi} Damage!!!`)
 
   if (jediScore <= 0 && enemyScore > 0) {
+    jediScore = 0
+    loseText()
+    jedi.children()[2].innerHTML = jediScore
     console.log("you lost")
     $("#button").prop("disabled", "true")
-    setTimeout(reload, 5000)
+    setTimeout(reload, 3000)
   }
   else if (jediScore > 0 && enemyScore <= 0) {
+    enemyScore = 0
+    winText()
+    enemy.children()[2].innerHTML = enemyScore
     console.log("loser")
     $("#button").prop("disabled", "true")
     setTimeout(reload, 3000)
 
   }
   else if (jediScore <= 0 && enemyScore <= 0) {
+    winText()
+    enemy.children()[2].innerHTML = enemyScore
+    jedi.children()[2].innerHTML = jediScore
+    jediScore = 0;
+    enemyScore = 0;
     $("#button").prop("disabled", "true")
-    setTimeout(reaload,3000)
+    setTimeout(reload, 3000)
     console.log("tied")
   }
 
@@ -163,4 +174,25 @@ $("#button").click(function () {
 
 let reload = () => {
   location.reload()
+}
+
+let winText = () => {
+  let winnerBanner = $("<h1>")
+  winnerBanner.text("Congratulations! You have Saved the Galaxy")
+  winnerBanner.css({ "color": "green", "font-weight": "800", "font-size": "60px" })
+  $(".container-fluid").append(winnerBanner)
+}
+
+let loseText = () => {
+  let loserBanner = $("<h1>")
+  loserBanner.text("The Galaxy Descends Into Chaos")
+  loserBanner.css({ "color": "red", "font-weight": "800", "font-size": "60px" })
+  $(".container-fluid").append(loserBanner)
+}
+
+let tieText = () => {
+  let tieBanner = $("<h1>");
+  tieBanner.text("No True Winner, Try Again!")
+  tieBanner.css({ "color": "blue", "font-weight": "800", "font-size": "60px" })
+  $(".container-fluid").append("tieBanner")
 }

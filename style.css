@@ -40,6 +40,12 @@
   align-items:center
 }
 
-/* body{
-  background: url(
-} */
+body{
+  background: url(pics/background-1.jpg);
+  background-size: cover;
+}
+
+p{
+  font-weight: 900;
+  font-size:16px;
+}
