@@ -69,7 +69,6 @@ $("#image3").click(function () {
     $("#chosen-jedi").append($("#image3"))
     $("#choose-enemy").append($("#image1"), $("#image2"), $("#image4"))
     $("#choose-jedi").remove()
-    $("#image4").css("color", "green")
     $("#image3").css("border", "3px solid green")
   }
 
