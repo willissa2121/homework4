@@ -195,5 +195,5 @@ let tieText = () => {
   let tieBanner = $("<h1>");
   tieBanner.text("No True Winner, Try Again!")
   tieBanner.css({ "color": "blue", "font-weight": "800", "font-size": "60px" })
-  $(".container-fluid").append("tieBanner")
+  $(".container-fluid").append(tieBanner)
 }
