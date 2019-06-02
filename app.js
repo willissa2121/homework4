@@ -157,11 +157,12 @@ $("#button").click(function () {
 
   }
   else if (jediScore <= 0 && enemyScore <= 0) {
-    winText()
-    enemy.children()[2].innerHTML = enemyScore
-    jedi.children()[2].innerHTML = jediScore
     jediScore = 0;
     enemyScore = 0;
+    tieText()
+    enemy.children()[2].innerHTML = enemyScore
+    jedi.children()[2].innerHTML = jediScore
+
     $("#button").prop("disabled", "true")
     setTimeout(reload, 3000)
     console.log("tied")
