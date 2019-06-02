@@ -1,0 +1,45 @@
+/* .container-fluid{
+  display:flex;
+  justify-content:space-around;
+} */
+
+#chosen-enemy{
+  color:red;
+}
+
+.row{
+  margin-left:2vw;
+  margin-top:1.5vh;
+}
+
+#chosen-enemy-label{
+  display:none;
+}
+
+#image1{
+  display:flex;
+  flex-direction:column;
+  align-items:center
+}
+
+#image2{
+  display:flex;
+  flex-direction:column;
+  align-items:center
+}
+
+#image3{
+  display:flex;
+  flex-direction:column;
+  align-items:center
+}
+
+#image4{
+  display:flex;
+  flex-direction:column;
+  align-items:center
+}
+
+/* body{
+  background: url(
+} */
