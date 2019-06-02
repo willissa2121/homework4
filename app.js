@@ -114,7 +114,7 @@ $("#button").click(function () {
   let enemy = ($("#chosen-enemy").children())
   let enemyScore = (enemy.children()[2].innerHTML)
   console.log(enemyScore)
-  let randoEnemy = Math.floor(Math.random() * 25 + 1)
+  let randoEnemy = Math.floor(Math.random() * 20 + 1)
   enemyScore = enemyScore - randoEnemy
   enemy.children()[2].innerHTML = enemyScore
 
