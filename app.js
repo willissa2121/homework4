@@ -1,6 +1,8 @@
 
 
-
+let fightClick = 1;
+let beaten = 0;
+let rowClear = 0;
 ///Image 1 function///////////////////////////////////
 
 
@@ -20,12 +22,15 @@ $("#image1").click(function () {
     $("#image1").css("border", "3px solid green")
   }
 
-  else if ($("#image1").parent().is($("#choose-enemy"))) {
+  else if ($("#image1").parent().is($("#choose-enemy")) && rowClear === 0) {
+    rowClear++
     $("#chosen-enemy").append($("#image1"))
-    $("#hide-row").css("display", "none")
-    $("#choose-enemy").remove()
+    // $("#hide-row").css("display", "none")
+    // $("#choose-enemy").remove()
     $("#chosen-enemy-label").css("display", "block")
     $("#image1").css("border", "3px solid red")
+    enableButton()
+    $("#reaction-text-row").empty()
   }
 
 
@@ -46,13 +51,16 @@ $("#image2").click(function () {
 
   }
 
-  else if ($("#image2").parent().is($("#choose-enemy"))) {
+  else if ($("#image2").parent().is($("#choose-enemy")) && rowClear === 0) {
+    rowClear++
     $("#chosen-enemy").append($("#image2"))
-    $("#hide-row").css("display", "none")
-    $("#choose-enemy").remove()
+    // $("#hide-row").css("display", "none")
+    // $("#choose-enemy").remove()
     $("#chosen-enemy-label").css("display", "block")
     $("#image1").css("border", "3px solid green")
     $("#image2").css("border", "3px solid red")
+    enableButton()
+    $("#reaction-text-row").empty()
   }
 
 
@@ -72,12 +80,15 @@ $("#image3").click(function () {
     $("#image3").css("border", "3px solid green")
   }
 
-  else if ($("#image3").parent().is($("#choose-enemy"))) {
+  else if ($("#image3").parent().is($("#choose-enemy")) && rowClear === 0) {
+    rowClear++
     $("#chosen-enemy").append($("#image3"))
-    $("#hide-row").css("display", "none")
-    $("#choose-enemy").remove()
+    // $("#hide-row").css("display", "none")
+    // $("#choose-enemy").remove()
     $("#chosen-enemy-label").css("display", "block")
     $("#image3").css("border", "3px solid red")
+    enableButton()
+    $("#reaction-text-row").empty()
   }
 
 })
@@ -95,12 +106,15 @@ $("#image4").click(function () {
     $("#choose-jedi").remove()
     $("#image4").css("border", "3px solid green")
   }
-  else if ($("#image4").parent().is($("#choose-enemy"))) {
+  else if ($("#image4").parent().is($("#choose-enemy")) && rowClear === 0) {
+    rowClear++
     $("#chosen-enemy").append($("#image4"))
-    $("#hide-row").css("display", "none")
-    $("#choose-enemy").remove()
+    // $("#hide-row").css("display", "none")
+    // $("#choose-enemy").remove()
     $("#chosen-enemy-label").css("display", "block")
     $("#image4").css("border", "3px solid red")
+    enableButton()
+    $("#reaction-text-row").empty()
   }
 })
 
@@ -110,13 +124,19 @@ $("#image4").click(function () {
 $("#button").click(function () {
 
   //getting enemies score value/////////////////////////////////////////////////
+  // console.log($("#chosen-enemy").children()[0])
+
+
 
   let enemy = ($("#chosen-enemy").children())
+  // console.log($("#chosen-enemy").children().length)
   let enemyScore = (enemy.children()[2].innerHTML)
-  console.log(enemyScore)
-  let randoEnemy = Math.floor(Math.random() * 20 + 1)
+  // console.log(enemyScore)
+  let randoEnemy = jediDamage()
   enemyScore = enemyScore - randoEnemy
   enemy.children()[2].innerHTML = enemyScore
+
+
 
 
 
@@ -128,71 +148,103 @@ $("#button").click(function () {
 
   //getting heroes value/////////////////////////////////////////////////////////
 
-  let jedi = ($("#chosen-jedi").children())
-  let jediScore = (jedi.children()[2].innerHTML)
-  let randoJedi = Math.floor(Math.random() * 25 + 1)
-  jediScore = jediScore - randoJedi
-  jedi.children()[2].innerHTML = jediScore
-  console.log(jediScore)
-  // console.log(heroScore)
-
-  $("#jedi-damage").text(`Your Hero took ${randoJedi} Damage!!!`)
-
-  if (jediScore <= 0 && enemyScore > 0) {
-    jediScore = 0
-    loseText()
+  //if (beaten === 0) {
+    let jedi = ($("#chosen-jedi").children())
+    let jediScore = (jedi.children()[2].innerHTML)
+    let randoJedi = sithDamage()
+    jediScore = jediScore - randoJedi
     jedi.children()[2].innerHTML = jediScore
-    console.log("you lost")
-    $("#button").prop("disabled", "true")
-    setTimeout(reload, 3000)
-  }
-  else if (jediScore > 0 && enemyScore <= 0) {
-    enemyScore = 0
-    winText()
-    enemy.children()[2].innerHTML = enemyScore
-    console.log("loser")
-    $("#button").prop("disabled", "true")
-    setTimeout(reload, 3000)
+    console.log(jediScore)
+    // console.log(heroScore)
 
-  }
-  else if (jediScore <= 0 && enemyScore <= 0) {
-    jediScore = 0;
-    enemyScore = 0;
-    tieText()
-    enemy.children()[2].innerHTML = enemyScore
-    jedi.children()[2].innerHTML = jediScore
+    $("#jedi-damage").text(`Your Hero took ${randoJedi} Damage!!!`)
 
-    $("#button").prop("disabled", "true")
-    setTimeout(reload, 3000)
-    console.log("tied")
-  }
+    if (jediScore <= 0 && enemyScore > 0) {
+      jediScore = 0
+      loseText()
+      jedi.children()[2].innerHTML = jediScore
+      console.log("you lost")
+      $("#button").prop("disabled", "true")
+      setTimeout(reload, 3000)
+    }
+    else if (jediScore > 0 && enemyScore <= 0) {
+      enemyScore = 0
+      winText()
+      enemy.children()[2].innerHTML = enemyScore
+      console.log("loser")
+      $("#button").prop("disabled", "true")
+      // setTimeout(reload, 3000)
+
+    }
+    else if (jediScore <= 0 && enemyScore <= 0) {
+      jediScore = 0;
+      enemyScore = 0;
+      tieText()
+      enemy.children()[2].innerHTML = enemyScore
+      jedi.children()[2].innerHTML = jediScore
+
+      $("#button").prop("disabled", "true")
+      setTimeout(reload, 3000)
+      console.log("tied")
+    }
+  //}
 
 
 
 })
 
-
+// Reload the entire page on win or loss function
 let reload = () => {
   location.reload()
 }
-
+// 3 groups of text that will append to the bottom of the page depening on the score results
 let winText = () => {
-  let winnerBanner = $("<h1>")
-  winnerBanner.text("Congratulations! You have Saved the Galaxy")
-  winnerBanner.css({ "color": "green", "font-weight": "800", "font-size": "60px" })
-  $(".container-fluid").append(winnerBanner)
+  if (beaten < 2) {
+    let winnerBanner = $("<h1>")
+    winnerBanner.text("Congratulations! Pick Your Next Victim")
+    winnerBanner.css({ "color": "green", "font-weight": "800", "font-size": "60px" })
+    $("#reaction-text-row").append(winnerBanner)
+    beaten++
+    $("#chosen-enemy").empty()
+    rowClear=0
+  }
+  else if (beaten === 2){
+    let wonBanner = $("<h1>")
+    wonBanner.text("Congratulation Young Jedi! You Saved the Galaxy")
+    wonBanner.css({"color": "green", "font-weight":"800", "font-size": "60px"})
+    $("#reaction-text-row").append(wonBanner)
+    $("#chosen-enemy").empty()
+    setTimeout(reload, 5000)
+  }
 }
 
 let loseText = () => {
   let loserBanner = $("<h1>")
   loserBanner.text("The Galaxy Descends Into Chaos")
   loserBanner.css({ "color": "red", "font-weight": "800", "font-size": "60px" })
-  $(".container-fluid").append(loserBanner)
+  $("#reaction-text-row").append(loserBanner)
 }
 
 let tieText = () => {
   let tieBanner = $("<h1>");
   tieBanner.text("No True Winner, Try Again!")
   tieBanner.css({ "color": "blue", "font-weight": "800", "font-size": "60px" })
-  $(".container-fluid").append(tieBanner)
+  $("#reaction-text-row").append(tieBanner)
 }
+// calculates and adds up the damage of the jedi
+let jediDamage = () => {
+  let damage = 8
+  let damageOutput = 8 * fightClick;
+  fightClick++
+  return damageOutput
+}
+
+let sithDamage = () => {
+  let output = Math.floor(Math.random()*20)
+  return output
+}
+
+let enableButton = () => {
+  document.getElementById("button").disabled = false
+}
+
