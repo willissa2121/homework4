@@ -159,6 +159,8 @@ $("#button").click(function () {
 
     $("#jedi-damage").text(`Your Hero took ${randoJedi} Damage!!!`)
 
+    //else if statemetn tree depending on who wins the current iteration of battle
+
     if (jediScore <= 0 && enemyScore > 0) {
       jediScore = 0
       loseText()
@@ -198,6 +200,8 @@ let reload = () => {
   location.reload()
 }
 // 3 groups of text that will append to the bottom of the page depening on the score results
+
+//wintext will handle the difference betweent the first and final iteration of winning the round vs game
 let winText = () => {
   if (beaten < 2) {
     let winnerBanner = $("<h1>")
@@ -208,6 +212,8 @@ let winText = () => {
     $("#chosen-enemy").empty()
     rowClear=0
   }
+
+  // iteration of code that rus if all 3 cards have been beaten
   else if (beaten === 2){
     let wonBanner = $("<h1>")
     wonBanner.text("Congratulation Young Jedi! You Saved the Galaxy")
@@ -218,6 +224,10 @@ let winText = () => {
   }
 }
 
+
+// only displays if lose, very hard to do
+
+
 let loseText = () => {
   let loserBanner = $("<h1>")
   loserBanner.text("The Galaxy Descends Into Chaos")
@@ -225,24 +235,32 @@ let loseText = () => {
   $("#reaction-text-row").append(loserBanner)
 }
 
+//tie text, edge case very uncommon
+
 let tieText = () => {
   let tieBanner = $("<h1>");
   tieBanner.text("No True Winner, Try Again!")
   tieBanner.css({ "color": "blue", "font-weight": "800", "font-size": "60px" })
   $("#reaction-text-row").append(tieBanner)
 }
+
+
 // calculates and adds up the damage of the jedi
+
 let jediDamage = () => {
-  let damage = 8
-  let damageOutput = 8 * fightClick;
+  let damage = 5
+  let damageOutput = 5 * fightClick;
   fightClick++
   return damageOutput
 }
+
+//calculates sith damage
 
 let sithDamage = () => {
   let output = Math.floor(Math.random()*20)
   return output
 }
+//button function used to enable button after next enemy is clicked, after it is disabled due to enemy dying
 
 let enableButton = () => {
   document.getElementById("button").disabled = false
