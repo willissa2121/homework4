@@ -54,3 +54,12 @@ p{
   cursor: pointer;
 
 }
+
+#jedi-damage{
+  color:orange;
+  font-size:25px;
+}
+#enemy-damage{
+  color:orange;
+  font-size:25px;
+}
