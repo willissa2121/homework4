@@ -1,1 +1,36 @@
+##Star Wars RPG
+For this star wars game, the main objective is to manipulate objects on the screen only by clicking. The player will choose a hero, then choose a first enemy and fight. No options will be available to the player except for the next immediate step, the player cant choose an enemy first, or fight unless both a hero or enemy is chosen. The hero will do incriments of 5 damage increasing each time, will the enemies will do a random amount of damage between 0 and 25
 
+##Getting Started
+To deploy the game, either go to https://willissa2121.github.io/homework4 or go to https://willissa2121.github and clone my homework 4 repository
+
+##Prerequisites
+None
+
+
+
+##Running the tests
+No automated tests
+
+
+
+##Built With
+Bootstrap
+Jquery
+
+
+##Versioning
+For the versions available, see the tags on this repository.
+
+##Authors
+Scott Willis.
+
+##License
+none
+
+##Acknowledgments
+A big thanks to our playtesters
+Luke Cherry
+Matt Verde
+Mark Gillam
+Carie Graves
